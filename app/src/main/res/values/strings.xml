@@ -1,0 +1,113 @@
+<resources>
+
+    <string name="app_name">Budget</string>
+
+    <!-- 0. Navigation  -->
+        <!-- 0.0. Default Navigation  -->
+            <string name="nav_landing_page">Landing Page</string>
+            <string name="nav_home">Home</string>
+            <string name="nav_add">Add</string>
+
+        <!-- 0.1. Navigation Setting  -->
+            <string name="nav_setting">Settings</string>
+            <string name="nav_setting_info">Info</string>
+            <string name="nav_setting_config">Config</string>
+            <string name="nav_setting_accounts">Accounts</string>
+            <string name="nav_setting_cat_type">Category Types</string>
+            <string name="nav_setting_trx_cat">Categories</string>
+            <string name="nav_setting_label">Label</string>
+
+        <!-- 0.2. Navigation Account  -->
+            <string name="nav_account">Accounts</string>
+            <string name="nav_add_account">Add Accounts</string>
+            <string name="nav_detail_account">Detail of Accounts</string>
+
+        <!-- 0.3. Navigation Types Category  -->
+            <string name="nav_add_cat_type">Add Type of Category</string>
+            <string name="nav_detail_cat_type">Detail Type of Category</string>
+
+        <!-- 0.4. Navigation Category  -->
+            <string name="nav_trx_cat">Categories</string>
+            <string name="nav_detail_cat">Detail Category</string>
+
+        <!-- 0.5. Navigation Budget  -->
+            <string name="nav_budget">Budgets</string>
+            <string name="nav_add_budget">Add Budget</string>
+            <string name="nav_history_budget">Histories Budget</string>
+
+        <!-- 0.6. Navigation Transaction  -->
+            <string name="nav_trx">Transactions</string>
+            <string name="nav_detail_trx">Detail of Transactions</string>
+            <string name="nav_add_trx">Add Transaction</string>
+            <string name="nav_add_trx_income">Add Income Transaction</string>
+            <string name="nav_add_trx_saving">Add Saving Transaction</string>
+            <string name="nav_add_trx_need">Add Needed Transaction</string>
+            <string name="nav_add_trx_want">Add Wanted Transaction</string>
+            <string name="nav_add_trx_transfer">Add Transfer Transaction</string>
+            <string name="nav_add_cat">Add Category</string>
+    <!-- 0. Finish Navigation  -->
+
+    <!-- 1.0 Home Activity  -->
+
+        <string name="home_head_title">Home</string>
+        <string name="home_bal_account">Balance Accounts</string>
+        <string name="home_ava_categories">Type of Categories</string>
+
+    <!-- 1.0 Finish Home Activity  -->
+
+    <!-- 2.0 Setting Activity  -->
+
+        <string name="setting_head_title">Settings</string>
+
+    <!-- 2.0 Finish Setting Activity  -->
+
+    <!-- 3.0 Config Activity  -->
+
+        <string name="config_head_title">Config</string>
+
+    <!-- 3.0 Finish Config Activity  -->
+
+    <!-- 4.0 Account Activity  -->
+
+        <string name="account_head_title">Accounts</string>
+        <string name="add_account_head_title">Add Accounts</string>
+
+    <!-- 4.0 Finish Account Activity  -->
+
+    <!-- 5.0 Types Category Activity  -->
+
+        <string name="cat_type_head_title">Category Types</string>
+        <string name="detail_cat_type_head_title">Detail Category Types</string>
+
+    <!-- 5.0 Finish Types Category Activity  -->
+
+    <!-- 6.0 Category Activity  -->
+
+        <string name="cat_income">Income Categories</string>
+        <string name="cat_saving">Saving Categories</string>
+        <string name="cat_need">Needed Categories</string>
+        <string name="cat_want">Wanted Categories</string>
+        <string name="trx_cat_head_title">Categories</string>
+
+    <!-- 6.0 Finish Category Activity  -->
+
+    <!-- 7.0 Budget Activity  -->
+
+        <string name="budget_head_title">Budgets</string>
+
+    <!-- 7.0 Finish Budget Activity  -->
+
+    <!-- 8.0 Label Activity  -->
+
+        <string name="label_head_title">Label</string>
+
+    <!-- 8.0 Finish Label Activity  -->
+
+    <!-- 9.0 Transaction Activity  -->
+
+        <string name="trx_head_title">Transactions</string>
+        <string name="add_trx_head_title">Add Transaction</string>
+
+    <!-- 9.0 Finish Transaction Activity  -->
+
+</resources>
