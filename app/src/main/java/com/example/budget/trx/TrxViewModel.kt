@@ -1,28 +1,18 @@
 package com.example.budget.trx
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.budget.BudgetAPI
 import com.example.budget.data.APIConfig
 import com.example.budget.data.AddTransaction
-import com.example.budget.data.CategoryTypeWithBudget
 import com.example.budget.data.TrxWithAccountBudget
 import com.example.budget.data.UpdateTransaction
 import com.google.gson.Gson
 import io.ktor.client.*
 import io.ktor.client.call.body
-import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.DEFAULT
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -30,14 +20,11 @@ import io.ktor.http.ContentType.Application.Json
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.InternalAPI
 import kotlinx.coroutines.*
-import kotlinx.serialization.json.Json
-import java.io.File.separator
-import kotlin.coroutines.suspendCoroutine
 
 class TrxViewModel(config: APIConfig): ViewModel() {
 
-    private val apiConfig: APIConfig = config;
-    private val reqAPI = BudgetAPI(config).client;
+    private val apiConfig: APIConfig = config
+    private val reqAPI = BudgetAPI(config).client
 
     var errorMessage: String by mutableStateOf("")
 
@@ -48,8 +35,8 @@ class TrxViewModel(config: APIConfig): ViewModel() {
             response.status.value.equals(200)
 
         } catch (e: Exception) {
-            errorMessage = e.message.toString();
-            false;
+            errorMessage = e.message.toString()
+            false
         }
     }
 
@@ -72,9 +59,9 @@ class TrxViewModel(config: APIConfig): ViewModel() {
     suspend fun detailTrx(trxId: Int): TrxWithAccountBudget? {
         return try {
 
-            val response: HttpResponse = reqAPI.get("${apiConfig.apiPathTrx}?id=${trxId}");
-            val jsonCats: String = response.body();
-            Gson().fromJson(jsonCats, TrxWithAccountBudget::class.java);
+            val response: HttpResponse = reqAPI.get("${apiConfig.apiPathTrx}?id=${trxId}")
+            val jsonCats: String = response.body()
+            Gson().fromJson(jsonCats, TrxWithAccountBudget::class.java)
 
         } catch (e: Exception) {
             errorMessage = e.message.toString()
@@ -84,42 +71,42 @@ class TrxViewModel(config: APIConfig): ViewModel() {
 
     @OptIn(InternalAPI::class)
     suspend fun addTrx(addTrx: AddTransaction): Boolean {
-        try {
+        return try {
 
             val response: HttpResponse = reqAPI.put( apiConfig.apiPathTrx ) {
                 contentType(Json)
                 body =  Gson().toJson(addTrx)
             }
-            return response.status.value.equals(200)
+            response.status.value.equals(200)
 
         } catch (e: Exception) {
-            errorMessage = e.message.toString();
-            return false;
+            errorMessage = e.message.toString()
+            false
         }
     }
 
     suspend fun getTrxs(accountId: Int?, categoryId: Int?): List<TrxWithAccountBudget>? {
         return try {
 
-            var urlPath = apiConfig.apiPathTrx;
-            var listConditions: List<String> = mutableListOf();
+            var urlPath = apiConfig.apiPathTrx
+            var listConditions: List<String> = mutableListOf()
 
             if (accountId !== null && accountId != 0) {
                 listConditions += "accountid=${accountId}"
             }
 
             if (categoryId !== null && categoryId != 0) {
-                listConditions += "categoryid=${categoryId}";
+                listConditions += "categoryid=${categoryId}"
             }
 
             if (listConditions.isNotEmpty()) {
-                urlPath += "?";
+                urlPath += "?"
                 urlPath += listConditions.joinToString(separator = "&")
             }
 
-            val response: HttpResponse = reqAPI.get(urlPath);
-            val jsonCats: String = response.body();
-            Gson().fromJson(jsonCats, Array<TrxWithAccountBudget>::class.java).toList();
+            val response: HttpResponse = reqAPI.get(urlPath)
+            val jsonCats: String = response.body()
+            Gson().fromJson(jsonCats, Array<TrxWithAccountBudget>::class.java).toList()
 
         } catch (e: Exception) {
             errorMessage = e.message.toString()

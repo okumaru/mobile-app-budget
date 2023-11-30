@@ -1,6 +1,6 @@
 package com.example.budget.libs.composables.trx
 
-import androidx.compose.foundation.border
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.example.budget.data.TrxWithAccountBudget
 import java.text.SimpleDateFormat
 
+@SuppressLint("SimpleDateFormat")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrxSummary(

@@ -1,14 +1,10 @@
 package com.example.budget.account
 
 import android.content.Intent
-import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,12 +21,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -46,25 +39,21 @@ import com.example.budget.AddActivity
 import com.example.budget.BudgetApp
 import com.example.budget.R
 import com.example.budget.data.AddAccount
-import com.example.budget.data.AddCatType
 import com.example.budget.home.HomeActivity
-import com.example.budget.libs.ChangeActivity
-import com.example.budget.libs.LayoutWrapper
 import com.example.budget.setting.SettingActivity
 import com.example.budget.trx.TrxActivity
 import com.example.budget.trx_cat.TrxCatActivity
-import com.example.budget.ui.theme.BudgetTheme
 import kotlinx.coroutines.launch
 
 class DetailAccountActivity: BudgetApp() {
-    override val navName = R.string.nav_detail_account;
-    private var accountId: Int by mutableStateOf(0);
+    override val navName = R.string.nav_detail_account
+    private var accountId: Int by mutableStateOf(0)
 
-    private var name: String by mutableStateOf("");
+    private var name: String by mutableStateOf("")
     private var description: String by mutableStateOf("")
-    private var star: Boolean by mutableStateOf(false);
+    private var star: Boolean by mutableStateOf(false)
     private var type: String by mutableStateOf("")
-    private var balance: String by mutableStateOf("0");
+    private var balance: String by mutableStateOf("0")
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -79,22 +68,22 @@ class DetailAccountActivity: BudgetApp() {
         LaunchedEffect(Unit, block = {
 
             //get data from intent
-            val intent = intent;
-            accountId = intent.getIntExtra("accountid", 0);
+            val intent = intent
+            accountId = intent.getIntExtra("accountid", 0)
 
-            val detail = accountVM.detailAccount(accountId);
+            val detail = accountVM.detailAccount(accountId)
             if (detail != null) {
-                name = detail.name;
-                type = detail.type;
-                description = detail.description.toString();
-                star = detail.star;
-                type = detail.type;
-                balance = detail.balance.toString();
+                name = detail.name
+                type = detail.type
+                description = detail.description.toString()
+                star = detail.star
+                type = detail.type
+                balance = detail.balance.toString()
             }
 
-        });
+        })
 
-        if (!accountVM.errorMessage.isEmpty()) {
+        if (accountVM.errorMessage.isNotEmpty()) {
             Toast.makeText(this, accountVM.errorMessage,Toast.LENGTH_SHORT).show()
         }
 
@@ -134,7 +123,7 @@ class DetailAccountActivity: BudgetApp() {
                     IconButton(
                         onClick = {
                             coroutineScope.launch {
-                                val resSubmit = accountVM.deleteAccount(accountId);
+                                val resSubmit = accountVM.deleteAccount(accountId)
                                 if (resSubmit) {
                                     change(R.string.nav_account)
                                 }
@@ -160,7 +149,7 @@ class DetailAccountActivity: BudgetApp() {
                                         type = type,
                                         balance = balance.toInt()
                                     )
-                                );
+                                )
 
                                 if (resSubmit) {
                                     refresh()
@@ -259,35 +248,35 @@ class DetailAccountActivity: BudgetApp() {
     }
 
     private fun refresh() {
-        val intent = intent;
-        startActivity(intent);
+        val intent = intent
+        startActivity(intent)
     }
 
     override fun change(activity: Int) {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_account -> {
                 val intent = Intent(this, AccountActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
         }
     }

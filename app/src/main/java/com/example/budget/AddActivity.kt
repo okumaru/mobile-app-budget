@@ -27,7 +27,7 @@ import com.example.budget.trx_cat.AddTrxCatActivity
 import com.example.budget.trx_cat.TrxCatActivity
 
 class AddActivity: BudgetApp() {
-    override val navName = R.string.nav_add;
+    override val navName = R.string.nav_add
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -145,51 +145,51 @@ class AddActivity: BudgetApp() {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add_trx_income -> {
                 val intent = Intent(this, AddTrxActivity::class.java)
                 intent.putExtra("type", "Income")
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add_trx_saving -> {
                 val intent = Intent(this, AddTrxActivity::class.java)
                 intent.putExtra("type", "Saving")
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add_trx_need -> {
                 val intent = Intent(this, AddTrxActivity::class.java)
                 intent.putExtra("type", "Need")
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add_trx_want -> {
                 val intent = Intent(this, AddTrxActivity::class.java)
                 intent.putExtra("type", "Want")
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add_trx_transfer -> {
                 val intent = Intent(this, TransTrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add_cat -> {
                 val intent = Intent(this, AddTrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
         }
     }

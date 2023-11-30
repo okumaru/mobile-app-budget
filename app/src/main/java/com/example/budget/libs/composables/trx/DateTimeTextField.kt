@@ -27,7 +27,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +56,7 @@ fun DateTimeTextField(
             newDate.set(year, month, dayOfMonth)
             selectedDate = "${month.toMonthName()} $dayOfMonth, $year"
 
-            updateDT(newDate.time);
+            updateDT(newDate.time)
 
         }, year, month, day)
 

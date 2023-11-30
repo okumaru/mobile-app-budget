@@ -93,7 +93,7 @@ class DetailTrxActivity: BudgetApp() {
                 account = detail.account
                 category = detail.category
                 trxDateTime = Date(detail.datetime.time)
-                valTrxDateTime = sdfTrxDateTime.format(trxDateTime)
+                valTrxDateTime = sdfTrxDateTime.format(Date(detail.datetime.time))
             }
 
         })

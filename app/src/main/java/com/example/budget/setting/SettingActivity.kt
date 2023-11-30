@@ -2,13 +2,9 @@ package com.example.budget.setting
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountBox
@@ -20,8 +16,6 @@ import androidx.compose.material.icons.outlined.Label
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -32,14 +26,11 @@ import com.example.budget.account.AccountActivity
 import com.example.budget.cat_type.CategoryTypeActivity
 import com.example.budget.home.HomeActivity
 import com.example.budget.label.LabelActivity
-import com.example.budget.libs.ChangeActivity
-import com.example.budget.libs.LayoutWrapper
 import com.example.budget.trx.TrxActivity
 import com.example.budget.trx_cat.TrxCatActivity
-import com.example.budget.ui.theme.BudgetTheme
 
 class SettingActivity: BudgetApp() {
-    override val navName = R.string.nav_setting;
+    override val navName = R.string.nav_setting
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -128,39 +119,39 @@ class SettingActivity: BudgetApp() {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting_accounts -> {
                 val intent = Intent(this, AccountActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting_cat_type -> {
                 val intent = Intent(this, CategoryTypeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting_config -> {
                 val intent = Intent(this, ConfigActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting_label -> {
                 val intent = Intent(this, LabelActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting_info -> {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/okumaru/android-example"))

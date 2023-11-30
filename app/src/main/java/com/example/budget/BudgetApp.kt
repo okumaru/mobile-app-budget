@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.room.Room
-import com.example.budget.account.AddAccountActivity
 import com.example.budget.data.APIConfig
 import com.example.budget.data.Config
 import com.example.budget.data.ConfigDatabase
@@ -28,14 +27,14 @@ import com.example.budget.trx_cat.TrxCatActivity
 import com.example.budget.ui.theme.BudgetTheme
 
 open class BudgetApp: ComponentActivity(), ChangeActivity {
-    override val navName = R.string.app_name;
+    override val navName = R.string.app_name
     protected var apiConfig: APIConfig? by mutableStateOf(null)
     protected var readyToUse: Boolean by  mutableStateOf(false)
 
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupConfig();
+        setupConfig()
 
         setContent {
             BudgetTheme {
@@ -61,33 +60,33 @@ open class BudgetApp: ComponentActivity(), ChangeActivity {
             val db = Room.databaseBuilder(
                 applicationContext,
                 ConfigDatabase::class.java, "sohfin"
-            ).allowMainThreadQueries().build();
+            ).allowMainThreadQueries().build()
 
-            val configDao = db.configDao();
+            val configDao = db.configDao()
 
             val getApiHost: Config? = configDao.findByName("host")
             if (getApiHost === null)
-                throw Exception("Config host is empty");
+                throw Exception("Config host is empty")
 
             val getApiPathAccount: Config? = configDao.findByName("pathAccount")
             if (getApiPathAccount === null)
-                throw Exception("Config api path account is empty");
+                throw Exception("Config api path account is empty")
 
             val getApiPathCatType: Config? = configDao.findByName("pathCatType")
             if (getApiPathCatType === null)
-                throw Exception("Config api path cat type is empty");
+                throw Exception("Config api path cat type is empty")
 
             val getApiPathTrxCat: Config? = configDao.findByName("pathTrxCat")
             if (getApiPathTrxCat === null)
-                throw Exception("Config api path trx cat is empty");
+                throw Exception("Config api path trx cat is empty")
 
             val getApiPathBudget: Config? = configDao.findByName("pathBudget")
             if (getApiPathBudget === null)
-                throw Exception("Config api path budget is empty");
+                throw Exception("Config api path budget is empty")
 
             val getApiPathTrx: Config? = configDao.findByName("pathTrx")
             if (getApiPathTrx === null)
-                throw Exception("Config api path trx is empty");
+                throw Exception("Config api path trx is empty")
 
             apiConfig = APIConfig(
                 apiHost = getApiHost.configValue,
@@ -98,10 +97,10 @@ open class BudgetApp: ComponentActivity(), ChangeActivity {
                 apiPathTrx = getApiPathTrx.configValue
             )
 
-            readyToUse = true;
+            readyToUse = true
 
         } catch (e: Exception) {
-            readyToUse = false;
+            readyToUse = false
         }
     }
 
@@ -112,23 +111,23 @@ open class BudgetApp: ComponentActivity(), ChangeActivity {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
         }
     }

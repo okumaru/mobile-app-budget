@@ -54,14 +54,12 @@ fun CatTypeSummary(
                     modifier = Modifier.width(24.dp)
                 ) {
                     Icon(
-                        imageVector = if (type.type == "Income")
-                            { Icons.Outlined.SaveAlt }
-                        else if (type.type == "Saving")
-                            { Icons.Outlined.EnergySavingsLeaf }
-                        else if (type.type == "Need")
-                            { Icons.Outlined.Balance }
-                        else
-                            { Icons.Outlined.Celebration },
+                        imageVector = when (type.type) {
+                            "Income" -> { Icons.Outlined.SaveAlt }
+                            "Saving" -> { Icons.Outlined.EnergySavingsLeaf }
+                            "Need" -> { Icons.Outlined.Balance }
+                            else -> { Icons.Outlined.Celebration }
+                        },
                         contentDescription = null
                     )
                 }

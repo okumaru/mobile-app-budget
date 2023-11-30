@@ -1,24 +1,15 @@
 package com.example.budget.trx_cat
 
 import android.content.Intent
-import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircleOutline
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -30,21 +21,15 @@ import androidx.compose.ui.unit.dp
 import com.example.budget.AddActivity
 import com.example.budget.BudgetApp
 import com.example.budget.R
-import com.example.budget.cat_type.DetailCatTypeActivity
-import com.example.budget.data.CategoryTypeWithBudget
 import com.example.budget.data.CategoryWithTypeBudget
-import com.example.budget.data.TrxWithAccountBudget
 import com.example.budget.home.HomeActivity
-import com.example.budget.libs.ChangeActivity
 import com.example.budget.libs.HeadActivity
-import com.example.budget.libs.LayoutWrapper
 import com.example.budget.libs.composables.trx_cat.GridCategories
 import com.example.budget.setting.SettingActivity
 import com.example.budget.trx.TrxActivity
-import com.example.budget.ui.theme.BudgetTheme
 
 class TrxCatActivity: BudgetApp() {
-    override val navName = R.string.nav_trx_cat;
+    override val navName = R.string.nav_trx_cat
 
     @Composable
     override fun Content() {
@@ -52,15 +37,15 @@ class TrxCatActivity: BudgetApp() {
         if (super.apiConfig === null || !super.readyToUse)
             change(R.string.nav_setting_config)
 
-        val catVM = TrxCatViewModel(super.apiConfig!!);
+        val catVM = TrxCatViewModel(super.apiConfig!!)
         var catsList by remember { mutableStateOf<List<CategoryWithTypeBudget>?>(value = null) }
 
         LaunchedEffect(Unit, block = {
-            catsList = catVM.getCategories(null);
-        });
+            catsList = catVM.getCategories(null)
+        })
 
-        if (!catVM.errorMessage.isEmpty()) {
-            Toast.makeText(this, catVM.errorMessage, Toast.LENGTH_SHORT).show();
+        if (catVM.errorMessage.isNotEmpty()) {
+            Toast.makeText(this, catVM.errorMessage, Toast.LENGTH_SHORT).show()
         }
 
         HeadActivity(
@@ -94,34 +79,34 @@ class TrxCatActivity: BudgetApp() {
     private fun detail(cat: CategoryWithTypeBudget) {
         val intent = Intent(this, DetailTrxCatActivity::class.java)
         intent.putExtra("catid", cat.id)
-        startActivity(intent);
+        startActivity(intent)
     }
 
     override fun change(activity: Int) {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add_cat -> {
                 val intent = Intent(this, AddTrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
         }
     }

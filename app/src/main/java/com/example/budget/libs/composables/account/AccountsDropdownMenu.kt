@@ -18,8 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import com.example.budget.account.AccountViewModel
 import com.example.budget.data.Account
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,10 +34,10 @@ fun AccountsDropdownMenu(
 
     LaunchedEffect(Unit, block = {
         if (!initItem) {
-            selectedDataAccount = accounts[0];
-            changeAccountId(accounts[0].id);
+            selectedDataAccount = accounts[0]
+            changeAccountId(accounts[0].id)
         }
-    });
+    })
 
     Column {
         ExposedDropdownMenuBox(

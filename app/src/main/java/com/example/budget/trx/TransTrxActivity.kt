@@ -67,7 +67,7 @@ class TransTrxActivity: BudgetApp() {
 
         val trxVM = TrxViewModel(super.apiConfig!!)
         val accountVM = AccountViewModel(super.apiConfig!!)
-        val catVM = TrxCatViewModel(super.apiConfig!!);
+        val catVM = TrxCatViewModel(super.apiConfig!!)
 
         var accountsList by remember { mutableStateOf<List<Account>?>(value = null) }
         var catsList by remember { mutableStateOf<List<CategoryWithTypeBudget>?>(value = null) }
@@ -80,7 +80,7 @@ class TransTrxActivity: BudgetApp() {
 
             valTrxDateTime = sdfTrxDateTime.format(trxDateTime)
             accountsList = accountVM.getAccounts()
-            catsList = catVM.getCategories("Transfer");
+            catsList = catVM.getCategories("Transfer")
 
         })
 

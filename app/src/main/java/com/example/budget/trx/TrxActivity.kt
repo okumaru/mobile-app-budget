@@ -1,81 +1,52 @@
 package com.example.budget.trx
 
 import android.content.Intent
-import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material.icons.outlined.Clear
-import androidx.compose.material.icons.outlined.MultipleStop
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.Popup
-import androidx.compose.ui.window.PopupProperties
 import com.example.budget.AddActivity
 import com.example.budget.BudgetApp
 import com.example.budget.R
 import com.example.budget.account.AccountViewModel
-import com.example.budget.account.DetailAccountActivity
 import com.example.budget.data.Account
 import com.example.budget.data.CategoryWithTypeBudget
 import com.example.budget.data.TrxWithAccountBudget
 import com.example.budget.home.HomeActivity
-import com.example.budget.libs.ChangeActivity
 import com.example.budget.libs.HeadActivity
-import com.example.budget.libs.LayoutWrapper
 import com.example.budget.libs.composables.account.AccountsDropdownMenu
 import com.example.budget.libs.composables.trx.GridTrxSummary
 import com.example.budget.libs.composables.trx_cat.CatsDropMenu
 import com.example.budget.setting.SettingActivity
 import com.example.budget.trx_cat.TrxCatActivity
 import com.example.budget.trx_cat.TrxCatViewModel
-import com.example.budget.ui.theme.BudgetTheme
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class TrxActivity: BudgetApp() {
-    override val navName = R.string.nav_trx;
+    override val navName = R.string.nav_trx
 
     private var accountid: Int? by mutableStateOf(null)
     private var categoryid: Int? by mutableStateOf(null)
@@ -88,22 +59,22 @@ class TrxActivity: BudgetApp() {
         if (super.apiConfig === null || !super.readyToUse)
             change(R.string.nav_setting_config)
 
-        val trxVM = TrxViewModel(super.apiConfig!!);
-        val accountVM = AccountViewModel(super.apiConfig!!);
-        val catVM = TrxCatViewModel(super.apiConfig!!);
+        val trxVM = TrxViewModel(super.apiConfig!!)
+        val accountVM = AccountViewModel(super.apiConfig!!)
+        val catVM = TrxCatViewModel(super.apiConfig!!)
         var trxsList by remember { mutableStateOf<List<TrxWithAccountBudget>?>(value = null) }
 
         LaunchedEffect(Unit, block = {
 
             //get data from intent
-            val intent = intent;
-            accountid = intent.getIntExtra("accountid", 0);
-            categoryid = intent.getIntExtra("categoryid", 0);
-            accountsList = accountVM.getAccounts();
-            catsList = catVM.getCategories(null);
-            trxsList = trxVM.getTrxs(accountid, categoryid);
+            val intent = intent
+            accountid = intent.getIntExtra("accountid", 0)
+            categoryid = intent.getIntExtra("categoryid", 0)
+            accountsList = accountVM.getAccounts()
+            catsList = catVM.getCategories(null)
+            trxsList = trxVM.getTrxs(accountid, categoryid)
 
-        });
+        })
 
         if (trxVM.errorMessage.isNotEmpty()) {
             Toast.makeText(this, trxVM.errorMessage,Toast.LENGTH_SHORT).show()
@@ -212,39 +183,39 @@ class TrxActivity: BudgetApp() {
     }
 
     private fun filter(accountId: Int?, categoryId: Int?) {
-        val intent = intent;
-        intent.putExtra("accountid", accountId);
-        intent.putExtra("categoryid", categoryId);
-        startActivity(intent);
+        val intent = intent
+        intent.putExtra("accountid", accountId)
+        intent.putExtra("categoryid", categoryId)
+        startActivity(intent)
     }
 
     private fun detail(trx: TrxWithAccountBudget) {
         val intent = Intent(this, DetailTrxActivity::class.java)
         intent.putExtra("trxid", trx.id)
-        startActivity(intent);
+        startActivity(intent)
     }
 
     override fun change(activity: Int) {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
         }
     }

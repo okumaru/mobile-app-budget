@@ -43,7 +43,7 @@ import com.example.budget.trx.TrxActivity
 import com.example.budget.trx_cat.TrxCatActivity
 
 class HomeActivity: BudgetApp()  {
-    override val navName = R.string.nav_home;
+    override val navName = R.string.nav_home
 
     @Composable
     override fun Content() {
@@ -57,12 +57,12 @@ class HomeActivity: BudgetApp()  {
 
         LaunchedEffect(Unit, block = {
 
-            accountsList = homeVM.getAccounts();
-            categoriesList = homeVM.getCategories();
+            accountsList = homeVM.getAccounts()
+            categoriesList = homeVM.getCategories()
 
-        });
+        })
 
-        if (!homeVM.errorMessage.isEmpty()) {
+        if (homeVM.errorMessage.isNotEmpty()) {
             Toast.makeText(this, homeVM.errorMessage,Toast.LENGTH_SHORT).show()
         }
 
@@ -117,39 +117,39 @@ class HomeActivity: BudgetApp()  {
     private fun detail(account: Account) {
         val intent = Intent(this, DetailAccountActivity::class.java)
         intent.putExtra("accountid", account.id)
-        startActivity(intent);
+        startActivity(intent)
     }
 
     override fun change(activity: Int) {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
 
             R.string.nav_add_account -> {
                 val intent = Intent(this, AddAccountActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting_config -> {
                 val intent = Intent(this, ConfigActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
         }
     }

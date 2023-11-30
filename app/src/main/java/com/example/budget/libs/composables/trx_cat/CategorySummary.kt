@@ -1,10 +1,8 @@
 package com.example.budget.libs.composables.trx_cat
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -58,21 +56,17 @@ fun CategorySummary(
                     modifier = Modifier.width(24.dp)
                 ) {
                     Icon(
-                        imageVector = if (category.type.type == "Income")
-                            { Icons.Outlined.SaveAlt }
-                        else if (category.type.type == "Saving")
-                            { Icons.Outlined.EnergySavingsLeaf }
-                        else if (category.type.type == "Need")
-                            { Icons.Outlined.Balance }
-                        else
-                            { Icons.Outlined.Celebration },
+                        imageVector = when (category.type.type) {
+                            "Income" -> { Icons.Outlined.SaveAlt }
+                            "Saving" -> { Icons.Outlined.EnergySavingsLeaf }
+                            "Need" -> { Icons.Outlined.Balance }
+                            else -> { Icons.Outlined.Celebration }
+                        },
                         contentDescription = null
                     )
                 }
 
-                Column(
-//                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                ) {
+                Column {
                     Text(text = category.name)
                     Text(
                         text = category.type.type,

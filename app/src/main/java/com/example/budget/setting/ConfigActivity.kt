@@ -46,7 +46,7 @@ import com.example.budget.trx_cat.TrxCatActivity
 import com.example.budget.ui.theme.BudgetTheme
 
 class ConfigActivity: ComponentActivity(), ChangeActivity {
-    override val navName = R.string.nav_setting_config;
+    override val navName = R.string.nav_setting_config
     private var configDao: ConfigDao? by mutableStateOf(null)
 
     private var apiHost: String? by mutableStateOf(null)
@@ -63,9 +63,9 @@ class ConfigActivity: ComponentActivity(), ChangeActivity {
         val db = Room.databaseBuilder(
             applicationContext,
             ConfigDatabase::class.java, "sohfin"
-        ).allowMainThreadQueries().build();
+        ).allowMainThreadQueries().build()
 
-        configDao = db.configDao();
+        configDao = db.configDao()
 
         setContent {
             BudgetTheme {
@@ -91,27 +91,27 @@ class ConfigActivity: ComponentActivity(), ChangeActivity {
 
         val getApiHost: Config? = configDao?.findByName("host")
         if (getApiHost !== null && apiHost === null)
-            apiHost = getApiHost.configValue;
+            apiHost = getApiHost.configValue
 
         val getApiPathAccount: Config? = configDao?.findByName("pathAccount")
         if (getApiPathAccount !== null && apiPathAccount === null)
-            apiPathAccount = getApiPathAccount.configValue;
+            apiPathAccount = getApiPathAccount.configValue
 
         val getApiPathCatType: Config? = configDao?.findByName("pathCatType")
         if (getApiPathCatType !== null && apiPathCatType === null)
-            apiPathCatType = getApiPathCatType.configValue;
+            apiPathCatType = getApiPathCatType.configValue
 
         val getApiPathTrxCat: Config? = configDao?.findByName("pathTrxCat")
         if (getApiPathTrxCat !== null && apiPathTrxCat === null)
-            apiPathTrxCat = getApiPathTrxCat.configValue;
+            apiPathTrxCat = getApiPathTrxCat.configValue
 
         val getApiPathBudget: Config? = configDao?.findByName("pathBudget")
         if (getApiPathBudget !== null && apiPathBudget === null)
-            apiPathBudget = getApiPathBudget.configValue;
+            apiPathBudget = getApiPathBudget.configValue
 
         val getApiPathTrx: Config? = configDao?.findByName("pathTrx")
         if (getApiPathTrx !== null && apiPathTrx === null)
-            apiPathTrx = getApiPathTrx.configValue;
+            apiPathTrx = getApiPathTrx.configValue
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -144,39 +144,39 @@ class ConfigActivity: ComponentActivity(), ChangeActivity {
                         id = 1,
                         configName = "host",
                         configValue = apiHost.toString()
-                    ));
+                    ))
 
                     configDao?.insert(Config (
                         id = 2,
                         configName = "pathAccount",
                         configValue = apiPathAccount.toString()
-                    ));
+                    ))
 
                     configDao?.insert(Config (
                         id = 3,
                         configName = "pathCatType",
                         configValue = apiPathCatType.toString()
-                    ));
+                    ))
 
                     configDao?.insert(Config (
                         id = 4,
                         configName = "pathTrxCat",
                         configValue = apiPathTrxCat.toString()
-                    ));
+                    ))
 
                     configDao?.insert(Config (
                         id = 5,
                         configName = "pathBudget",
                         configValue = apiPathBudget.toString()
-                    ));
+                    ))
 
                     configDao?.insert(Config (
                         id = 6,
                         configName = "pathTrx",
                         configValue = apiPathTrx.toString()
-                    ));
+                    ))
 
-                    refresh();
+                    refresh()
                 },
                 modifier = Modifier.padding(top = 2.dp)
             ) {
@@ -271,31 +271,31 @@ class ConfigActivity: ComponentActivity(), ChangeActivity {
     }
 
     private fun refresh() {
-        val intent = intent;
-        startActivity(intent);
+        val intent = intent
+        startActivity(intent)
     }
 
     override fun change(activity: Int) {
         when(activity) {
             R.string.nav_home -> {
                 val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx -> {
                 val intent = Intent(this, TrxActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_add -> {
                 val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_trx_cat -> {
                 val intent = Intent(this, TrxCatActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
             R.string.nav_setting -> {
                 val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent);
+                startActivity(intent)
             }
         }
     }

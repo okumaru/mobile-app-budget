@@ -45,7 +45,7 @@ fun AccountSummary(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    imageVector = if (account.star == true) {Icons.Filled.Star} else {Icons.Outlined.StarBorder},
+                    imageVector = if (account.star) {Icons.Filled.Star} else {Icons.Outlined.StarBorder},
                     contentDescription = null
                 )
                 Column {

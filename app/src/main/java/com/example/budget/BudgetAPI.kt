@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 
 class BudgetAPI(config: APIConfig) {
 
-    private val apiConfig: APIConfig = config;
+    private val apiConfig: APIConfig = config
 
     val client = HttpClient(CIO) {
         defaultRequest {

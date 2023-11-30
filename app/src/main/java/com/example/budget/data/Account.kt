@@ -1,12 +1,6 @@
 package com.example.budget.data
 
-import com.google.gson.Gson
-import io.ktor.client.HttpClient
 import kotlinx.serialization.Serializable
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import java.sql.Timestamp
 
 @Serializable
 data class Account(

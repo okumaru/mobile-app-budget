@@ -18,9 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.budget.data.Category
 import com.example.budget.data.CategoryWithTypeBudget
-import com.example.budget.trx_cat.CategoryViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,11 +35,11 @@ fun CatsDropMenu(
     LaunchedEffect(Unit, block = {
 
         if (!initItem && catsList !== null) {
-            selectedDataCats = catsList[0];
-            changeCategoryId(catsList[0].id);
+            selectedDataCats = catsList[0]
+            changeCategoryId(catsList[0].id)
         }
 
-    });
+    })
 
     Column {
         ExposedDropdownMenuBox(
