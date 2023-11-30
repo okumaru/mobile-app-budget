@@ -80,7 +80,7 @@ class DetailAccountActivity: BudgetApp() {
 
             //get data from intent
             val intent = intent;
-            val accountId = intent.getIntExtra("accountid", 0);
+            accountId = intent.getIntExtra("accountid", 0);
 
             val detail = accountVM.detailAccount(accountId);
             if (detail != null) {

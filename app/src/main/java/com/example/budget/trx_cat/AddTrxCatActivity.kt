@@ -170,11 +170,13 @@ class AddTrxCatActivity: BudgetApp() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
 
-                CatTypeDropdownMenu(
-                    label = "Type of Category",
-                    catTypesList = catTypesList,
-                    changeCatTypeId = { typeid = it }
-                )
+                if (catTypesList !== null) {
+                    CatTypeDropdownMenu(
+                        label = "Type of Category",
+                        catTypesList = catTypesList,
+                        changeCatTypeId = { typeid = it }
+                    )
+                }
 
                 TextField(
                     modifier = Modifier.fillMaxWidth(),
